@@ -18,7 +18,7 @@ interface Match {
 
 interface MatchDetailViewProps {
 	match: Match;
-	phase: number;
+	currentPhase: number;
 	shared: boolean;
 	effects: Effect[];
 	onBack: () => void;
@@ -31,7 +31,7 @@ interface MatchDetailViewProps {
 
 export function MatchDetailView({
 	match,
-	phase,
+	currentPhase,
 	shared,
 	effects,
 	onBack,
@@ -53,7 +53,7 @@ export function MatchDetailView({
 			<ScoreboardDetail match={match} />
 			<ShareButton
 				match={match}
-				phase={phase}
+				currentPhase={currentPhase}
 				shared={shared}
 				onShare={onShare}
 			/>

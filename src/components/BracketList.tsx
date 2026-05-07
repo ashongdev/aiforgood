@@ -1,5 +1,6 @@
 import { motion } from "motion/react";
 import { MatchNode } from "./MatchNode";
+import { ByeCard } from "./ByeCard";
 
 interface Match {
 	id: string;
@@ -9,7 +10,7 @@ interface Match {
 	score2: number | null;
 	winner: number | null;
 	station: string;
-	stage: string;
+	isBye?: boolean;
 }
 
 interface BracketListProps {
@@ -28,11 +29,21 @@ export function BracketList({ matches, onSelectMatch }: BracketListProps) {
 		>
 			<div className="w-full pb-24">
 				{matches.map((m, i) => (
-					<MatchNode
-						key={m.id || i}
-						match={m}
-						onClick={() => onSelectMatch(m)}
-					/>
+					m.isBye ? (
+						<ByeCard
+							key={m.id || i}
+							team={m.team1}
+							station={m.station}
+							stage={m.stage || "BYE"}
+							onClick={() => onSelectMatch(m)}
+						/>
+					) : (
+						<MatchNode
+							key={m.id || i}
+							match={m}
+							onClick={() => onSelectMatch(m)}
+						/>
+					)
 				))}
 			</div>
 		</motion.div>

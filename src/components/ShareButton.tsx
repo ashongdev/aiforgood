@@ -8,14 +8,14 @@ interface ShareButtonProps {
 		score2: number | null;
 		station: string;
 	};
-	phase: number;
+	currentPhase: number;
 	shared: boolean;
 	onShare: () => void;
 }
 
 export function ShareButton({
 	match,
-	phase,
+	currentPhase,
 	shared,
 	onShare,
 }: ShareButtonProps) {

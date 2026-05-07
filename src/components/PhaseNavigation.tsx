@@ -1,14 +1,14 @@
 import { ChevronLeft, ChevronRight } from "lucide-react";
 
 interface PhaseNavigationProps {
-	phase: number;
+	currentPhase: number;
 	phaseName: string;
 	onPrevPhase: () => void;
 	onNextPhase: () => void;
 }
 
 export function PhaseNavigation({
-	phase,
+	currentPhase,
 	phaseName,
 	onPrevPhase,
 	onNextPhase,
@@ -27,7 +27,7 @@ export function PhaseNavigation({
 						Phase Index
 					</h1>
 					<p className="text-5xl font-serif font-black italic tracking-tighter leading-none">
-						{phase < 10 ? `0${phase}` : phase}
+						{currentPhase < 10 ? `0${currentPhase}` : currentPhase}
 					</p>
 				</div>
 				<button

@@ -9,7 +9,8 @@ interface MatchNodeProps {
 		score2: number | null;
 		winner: number | null;
 		station: string;
-		stage: string;
+		stage?: string;
+		isBye?: boolean;
 	};
 	onClick: () => void;
 }
