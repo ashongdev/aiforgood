@@ -172,7 +172,7 @@ export default function App() {
 	return (
 		<div className="min-h-screen bg-editorial-bg text-editorial-ink font-sans selection:bg-editorial-gold selection:text-white border-[12px] md:border-[24px] border-editorial-ink flex flex-col items-center bg-[url('https://www.transparenttextures.com/patterns/pinstriped-suit.png')] p-6 overflow-x-hidden relative">
 			{/* Navigation Buttons */}
-			<div className="fixed top-6 right-6 z-30 flex gap-3">
+			<div className="fixed bottom-6 right-6 z-30 flex gap-3">
 				<button
 					onClick={() =>
 						setCurrentPage(
