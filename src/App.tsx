@@ -1,10 +1,11 @@
 import { useQuery } from "@tanstack/react-query";
 import { Info } from "lucide-react";
 import { AnimatePresence } from "motion/react";
-import { useMemo, useState } from "react";
+import { useEffect, useMemo, useState } from "react";
 import { BracketList } from "./components/BracketList";
 import { CategoryToggle } from "./components/CategoryToggle";
 import { InfoModal } from "./components/InfoModal";
+import { LoadingSpinner } from "./components/LoadingSpinner";
 import { MatchDetailView } from "./components/MatchDetailView";
 import { PhaseNavigation } from "./components/PhaseNavigation";
 import { useEffects } from "./hooks/useEffects";
@@ -43,7 +44,10 @@ export default function App() {
 			: import.meta.env.VITE_JUNIOR_SPREADSHEET_ID;
 
 	const fetchData = async () => {
-		if (!phase) return { junior: [], senior: [] };
+		if (!phase) {
+			setCurrentPhase(0);
+			return { junior: [], senior: [] };
+		}
 
 		const response = new Promise<{
 			junior: string[][];
@@ -78,7 +82,11 @@ export default function App() {
 							senior: sheetData,
 						});
 					})
-					.catch((err: any) => reject(err));
+					.catch((err: any) => {
+						console.error("Error fetching data:", err);
+						setCurrentPhase(0);
+						reject(err);
+					});
 			});
 		});
 
@@ -92,6 +100,13 @@ export default function App() {
 		refetchInterval: 60000,
 		refetchOnWindowFocus: true,
 	});
+
+	// Reset phase to 0 if an error occurs
+	useEffect(() => {
+		if (query.isError && currentPhase !== 0) {
+			setCurrentPhase(0);
+		}
+	}, [query.isError, currentPhase]);
 
 	// Transform raw sheet data into bracket structure
 	const brackets = useMemo(() => {
@@ -174,13 +189,7 @@ export default function App() {
 							category={category}
 							onChange={setCategory}
 						/>
-						{query.isLoading && (
-							<div className="text-center py-8">
-								<p className="text-sm text-slate-600">
-									Loading matches...
-								</p>
-							</div>
-						)}
+						{query.isLoading && <LoadingSpinner />}
 						{query.error && (
 							<div className="text-center py-8">
 								<p className="text-sm text-red-600">
