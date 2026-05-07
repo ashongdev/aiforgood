@@ -1,3 +1,5 @@
+<!-- todo: have the user define a format(using a structured template of course. They just define their key names all structure. Then we run it through our parser to spit out that end result) -->
+
 # Sheet Reader API Documentation
 
 ## Overview
