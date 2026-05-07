@@ -1,41 +1,4 @@
-import { useEffect, useState } from "react";
 import { Match } from "../lib/matchService";
-
-interface SheetResponse {
-	range: string;
-	majorDimension: string;
-	values: string[][];
-}
-
-/**
- * Hook to load and parse match data from Google Sheets via API
- */
-export function useSheetMatches(spreadsheetId: string, range: string) {
-	const [matches, setMatches] = useState<Match[]>([]);
-	const [loading, setLoading] = useState(true);
-	const [error, setError] = useState<string | null>(null);
-
-	useEffect(() => {
-		const fetchMatches = async () => {
-			try {
-				// This would typically use a backend API to fetch from Google Sheets
-				// For now, we're using the static BRACKETS from brackets.ts
-				setLoading(false);
-			} catch (err) {
-				setError(
-					err instanceof Error
-						? err.message
-						: "Failed to fetch matches",
-				);
-				setLoading(false);
-			}
-		};
-
-		fetchMatches();
-	}, [spreadsheetId, range]);
-
-	return { matches, loading, error };
-}
 
 /**
  * Parse sheet data into matches

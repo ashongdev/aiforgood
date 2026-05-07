@@ -1,6 +1,3 @@
-import { collection, getDocs, query } from "firebase/firestore";
-import { db } from "./firebase";
-
 export interface Match {
 	id: string;
 	team1: string;
@@ -14,44 +11,6 @@ export interface Match {
 	winner: number | null;
 	station: string;
 	isBye?: boolean;
-}
-
-/**
- * Fetch matches from Firestore and parse them
- */
-export async function fetchMatchesFromFirestore(
-	phaseId: string,
-	division: "junior" | "senior",
-): Promise<Match[]> {
-	try {
-		const matchesRef = collection(db, "phases", phaseId, division);
-		const q = query(matchesRef);
-		const snapshot = await getDocs(q);
-
-		const matches: Match[] = [];
-		snapshot.forEach((doc, index) => {
-			const data = doc.data();
-			matches.push({
-				id: doc.id,
-				team1: data.team1 || "",
-				team2: data.team2 || "",
-				team1Score: data.team1Score ?? null,
-				team2Score: data.team2Score ?? null,
-				team1R1: data.team1R1 ?? null,
-				team1R2: data.team1R2 ?? null,
-				team2R1: data.team2R1 ?? null,
-				team2R2: data.team2R2 ?? null,
-				winner: data.winner ?? null,
-				station:
-					data.station || `${String(index + 1).padStart(2, "0")}`,
-			});
-		});
-
-		return matches;
-	} catch (error) {
-		console.error("Error fetching matches:", error);
-		return [];
-	}
 }
 
 /**
