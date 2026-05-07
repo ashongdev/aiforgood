@@ -40,7 +40,7 @@ export function InfoModal({ isOpen, onClose, phase = 0 }: InfoModalProps) {
 										ℹ️ TOURNAMENT RULES 2025-2026
 									</p>
 									<h2 className="text-2xl font-black text-editorial-ink">
-										ROBOTICS FOR GOOD
+										AI FOR GOOD
 									</h2>
 								</div>
 								<button
