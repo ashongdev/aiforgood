@@ -1,0 +1,70 @@
+import { motion } from "motion/react";
+import { InteractionMatrix } from "./InteractionMatrix";
+import { MatchDetailHeader } from "./MatchDetailHeader";
+import { Effect, ParticleEffects } from "./ParticleEffects";
+import { ScoreboardDetail } from "./ScoreboardDetail";
+import { ShareButton } from "./ShareButton";
+
+interface Match {
+	id: string;
+	team1: string;
+	team2: string;
+	score1: number | null;
+	score2: number | null;
+	winner?: number | null;
+	station: string;
+	stage: string;
+}
+
+interface MatchDetailViewProps {
+	match: Match;
+	phase: number;
+	shared: boolean;
+	effects: Effect[];
+	onBack: () => void;
+	onShare: () => void;
+	onCheerLeft: () => void;
+	onBooLeft: () => void;
+	onCheerRight: () => void;
+	onBooRight: () => void;
+}
+
+export function MatchDetailView({
+	match,
+	phase,
+	shared,
+	effects,
+	onBack,
+	onShare,
+	onCheerLeft,
+	onBooLeft,
+	onCheerRight,
+	onBooRight,
+}: MatchDetailViewProps) {
+	return (
+		<motion.div
+			key="detail"
+			initial={{ opacity: 0, x: 50 }}
+			animate={{ opacity: 1, x: 0 }}
+			exit={{ opacity: 0, x: -50 }}
+			className="w-full flex flex-col items-center max-w-sm"
+		>
+			<MatchDetailHeader onBack={onBack} />
+			<ScoreboardDetail match={match} />
+			<ShareButton
+				match={match}
+				phase={phase}
+				shared={shared}
+				onShare={onShare}
+			/>
+			<InteractionMatrix
+				match={match}
+				onCheerLeft={onCheerLeft}
+				onBooLeft={onBooLeft}
+				onCheerRight={onCheerRight}
+				onBooRight={onBooRight}
+			/>
+			<ParticleEffects effects={effects} />
+		</motion.div>
+	);
+}
