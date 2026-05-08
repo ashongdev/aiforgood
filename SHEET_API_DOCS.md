@@ -29,6 +29,21 @@ This covers:
 
 ---
 
+## 🔐 IMPORTANT: API Key Security Configuration
+
+⚠️ **READ THIS BEFORE CONTINUING** ⚠️
+
+Your API key will be **exposed in browser source code** because it's used in frontend JavaScript. You MUST configure restrictions, or your key can be abused.
+
+**Two mandatory restrictions you MUST set up:**
+
+1. **API Restrictions:** Only allow **Google Sheets API** (not all Google APIs)
+2. **HTTP Referrer Restrictions:** Only allow requests from **your application URL(s)**
+
+See detailed instructions in the [⚠️ CRITICAL Security Configuration section](#-critical-security-configuration) below. Implement these BEFORE deploying to production.
+
+---
+
 ## Function Signature
 
 ```typescript
@@ -136,12 +151,52 @@ await readSheet("sheet-id-123", "Sheet1!A1:Z100");
 // → Error: "API key not provided"
 ```
 
+**⚠️ CRITICAL Security Configuration:**
+
+Your API key **WILL BE VISIBLE** in your frontend source code. You MUST properly restrict it:
+
+### Step 1: Restrict to Google Sheets API Only
+1. Go to [Google Cloud Console](https://console.cloud.google.com)
+2. Navigate to **APIs & Services** → **Credentials**
+3. Click on your API key
+4. Under **API restrictions**, select **Restrict key**
+5. Choose **Google Sheets API** from the dropdown
+6. Click **Save**
+
+⚠️ **Critical:** Without this, the key can be used to access any Google API, not just Sheets!
+
+### Step 2: Restrict by HTTP Referrer (Most Important)
+1. In the same API key settings page, find **Application restrictions**
+2. Select **HTTP referrers (web sites)**
+3. Add your application URL(s):
+   - Local development: `http://localhost:5173/*`
+   - Production: `https://yourdomain.com/*`
+   - Include all variants your app uses
+
+⚠️ **Critical:** Only add YOUR application URLs. Anyone else with the key cannot use it from different domains.
+
+### Example Referrer Configuration:
+```
+http://localhost:5173/*
+http://localhost:3000/*
+https://tournament.yourdomain.com/*
+https://yourdomain.com/*
+```
+
 **Important Security Notes:**
 
 - 🔒 Never commit API keys to version control
 - 🔒 Use environment variables only
-- 🔒 Restrict API key permissions in Google Cloud Console
-- 🔒 Regenerate keys if compromised
+- 🔒 **ALWAYS restrict to Google Sheets API only** (prevents key misuse)
+- 🔒 **ALWAYS restrict to your domain(s) via HTTP referrers** (frontend keys are exposed)
+- 🔒 Regenerate keys immediately if compromised
+- 🔒 Audit your referrer restrictions monthly
+- 🔒 Keep application URLs updated as you scale
+
+**What happens if not restricted:**
+- ❌ Anyone finding your key can access all your Google APIs
+- ❌ Someone could create massive costs using your key
+- ❌ Your key could be exploited in attack campaigns
 
 ---
 
