@@ -2,6 +2,7 @@ import { useQuery } from "@tanstack/react-query";
 import { BookOpen, Info, RotateCcw } from "lucide-react";
 import { AnimatePresence } from "motion/react";
 import { useEffect, useMemo, useState } from "react";
+import ReactGA from "react-ga4";
 import { BracketList } from "./components/BracketList";
 import { CategoryToggle } from "./components/CategoryToggle";
 import { InfoModal } from "./components/InfoModal";
@@ -21,6 +22,11 @@ interface BracketPhase {
 }
 
 export default function App() {
+	useEffect(() => {
+		ReactGA.initialize("G-Z8EWG2FKDC");
+		ReactGA.send({ hitType: "pageview", page: window.location.pathname });
+	}, []);
+
 	const [currentPhase, setCurrentPhase] = useState(0);
 	const [category, setCategory] = useState<"junior" | "senior">(() => {
 		const saved = localStorage.getItem("selectedCategory");
@@ -216,6 +222,12 @@ export default function App() {
 			return;
 		}
 
+		// Track refresh button click
+		ReactGA.event({
+			category: "User",
+			action: "Refresh Scores Clicked",
+		});
+
 		setRefreshCount((count) => count + 1);
 		setLastRefreshTime(now);
 		query.refetch();
@@ -246,11 +258,15 @@ export default function App() {
 					</button>
 				</div>
 				<button
-					onClick={() =>
+					onClick={() => {
+						ReactGA.event({
+							category: "User",
+							action: "Scoring Rules Button Clicked",
+						});
 						setCurrentPage(
 							currentPage === "bracket" ? "rules" : "bracket",
-						)
-					}
+						);
+					}}
 					className={`border-2 border-editorial-ink p-3 hover:bg-editorial-ink hover:text-editorial-gold transition-colors shadow-[4px_4px_0px_0px_rgba(26,26,26,1)] ${
 						currentPage === "rules"
 							? "bg-editorial-ink text-white"
@@ -266,7 +282,13 @@ export default function App() {
 					<BookOpen size={24} className="font-bold" />
 				</button>
 				<button
-					onClick={() => setIsInfoOpen(true)}
+					onClick={() => {
+						ReactGA.event({
+							category: "User",
+							action: "Info Button Clicked",
+						});
+						setIsInfoOpen(true);
+					}}
 					className="bg-editorial-gold border-2 border-editorial-ink p-3 hover:bg-editorial-ink hover:text-editorial-gold transition-colors shadow-[4px_4px_0px_0px_rgba(26,26,26,1)]"
 					aria-label="Tournament information"
 				>

@@ -1,4 +1,5 @@
 import { motion } from "motion/react";
+import ReactGA from "react-ga4";
 
 interface ByeCardProps {
 	team: string;
@@ -7,11 +8,19 @@ interface ByeCardProps {
 }
 
 export function ByeCard({ team, station, onClick }: ByeCardProps) {
+	const handleClick = () => {
+		ReactGA.event({
+			category: "User",
+			action: `Bye Card Clicked:${team}`,
+		});
+		onClick();
+	};
+
 	return (
 		<motion.div
 			whileHover={{ x: 4, y: 4 }}
 			whileTap={{ scale: 0.98 }}
-			onClick={onClick}
+			onClick={handleClick}
 			className="w-full border-2 border-editorial-ink bg-editorial-gold shadow-[8px_8px_0px_0px_rgba(26,26,26,1)] overflow-hidden cursor-pointer active:shadow-none transition-shadow h-full"
 		>
 			<div className="flex justify-between items-center px-4 py-2 border-b-2 border-editorial-ink bg-editorial-ink">

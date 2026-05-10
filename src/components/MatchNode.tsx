@@ -1,4 +1,5 @@
 import { motion } from "motion/react";
+import ReactGA from "react-ga4";
 import { AnimatedScore } from "./AnimatedScore";
 
 interface MatchNodeProps {
@@ -16,11 +17,19 @@ interface MatchNodeProps {
 }
 
 export function MatchNode({ match, onClick }: MatchNodeProps) {
+	const handleClick = () => {
+		ReactGA.event({
+			category: "User",
+			action: `Matchup Clicked:${match.team1} vs ${match.team2}`,
+		});
+		onClick();
+	};
+
 	return (
 		<motion.div
 			whileHover={{ x: 4, y: 4 }}
 			whileTap={{ scale: 0.98 }}
-			onClick={onClick}
+			onClick={handleClick}
 			className="w-full border-2 border-editorial-ink bg-white shadow-[8px_8px_0px_0px_rgba(26,26,26,1)] overflow-hidden cursor-pointer active:shadow-none transition-shadow h-full"
 		>
 			<div className="flex justify-between items-center px-4 py-2 border-b-2 border-editorial-ink bg-slate-50">

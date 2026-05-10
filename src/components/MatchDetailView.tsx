@@ -1,4 +1,6 @@
 import { motion } from "motion/react";
+import { useEffect } from "react";
+import ReactGA from "react-ga4";
 import { InteractionMatrix } from "./InteractionMatrix";
 import { MatchDetailHeader } from "./MatchDetailHeader";
 import { Effect, ParticleEffects } from "./ParticleEffects";
@@ -46,6 +48,11 @@ export function MatchDetailView({
 	onCheerRight,
 	onBooRight,
 }: MatchDetailViewProps) {
+	useEffect(() => {
+		ReactGA.initialize("G-Z8EWG2FKDC");
+		ReactGA.send({ hitType: "pageview", page: window.location.pathname });
+	}, []);
+
 	return (
 		<motion.div
 			key="detail"

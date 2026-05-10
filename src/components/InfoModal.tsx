@@ -1,5 +1,6 @@
 import { X } from "lucide-react";
 import { AnimatePresence, motion } from "motion/react";
+import ReactGA from "react-ga4";
 
 interface InfoModalProps {
 	isOpen: boolean;
@@ -8,6 +9,14 @@ interface InfoModalProps {
 }
 
 export function InfoModal({ isOpen, onClose, phase = 0 }: InfoModalProps) {
+	const handleClose = () => {
+		ReactGA.event({
+			category: "User",
+			action: "Info Modal Closed",
+		});
+		onClose();
+	};
+
 	return (
 		<AnimatePresence>
 			{isOpen && (
@@ -17,7 +26,7 @@ export function InfoModal({ isOpen, onClose, phase = 0 }: InfoModalProps) {
 						initial={{ opacity: 0 }}
 						animate={{ opacity: 1 }}
 						exit={{ opacity: 0 }}
-						onClick={onClose}
+						onClick={handleClose}
 						className="fixed inset-0 bg-black bg-opacity-80 z-40"
 					/>
 					{/* Modal */}
@@ -44,7 +53,7 @@ export function InfoModal({ isOpen, onClose, phase = 0 }: InfoModalProps) {
 									</h2>
 								</div>
 								<button
-									onClick={onClose}
+									onClick={handleClose}
 									className="p-1 hover:bg-editorial-ink hover:text-editorial-gold transition-colors"
 									aria-label="Close modal"
 								>
@@ -166,7 +175,7 @@ export function InfoModal({ isOpen, onClose, phase = 0 }: InfoModalProps) {
 							{/* Footer */}
 							<div className="mt-6 pt-4 border-t-2 border-editorial-ink">
 								<button
-									onClick={onClose}
+									onClick={handleClose}
 									className="w-full bg-editorial-ink text-editorial-gold font-black py-3 px-4 border-2 border-editorial-ink hover:bg-editorial-gold hover:text-editorial-ink transition-colors shadow-[4px_4px_0px_0px_rgba(26,26,26,1)]"
 								>
 									READY FOR THE CHALLENGE!

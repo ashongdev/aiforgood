@@ -1,4 +1,5 @@
 import { Heart, ThumbsDown } from "lucide-react";
+import ReactGA from "react-ga4";
 import { ReactionButton } from "./ReactionButton";
 
 interface Match {
@@ -21,6 +22,38 @@ export function InteractionMatrix({
 	onCheerRight,
 	onBooRight,
 }: InteractionMatrixProps) {
+	const handleCheerLeft = () => {
+		ReactGA.event({
+			category: "User",
+			action: `Cheer Clicked:${match.team1}`,
+		});
+		onCheerLeft();
+	};
+
+	const handleBooLeft = () => {
+		ReactGA.event({
+			category: "User",
+			action: `Boo Clicked:${match.team1}`,
+		});
+		onBooLeft();
+	};
+
+	const handleCheerRight = () => {
+		ReactGA.event({
+			category: "User",
+			action: `Cheer Clicked:${match.team2}`,
+		});
+		onCheerRight();
+	};
+
+	const handleBooRight = () => {
+		ReactGA.event({
+			category: "User",
+			action: `Boo Clicked:${match.team2}`,
+		});
+		onBooRight();
+	};
+
 	return (
 		<div className="w-full space-y-12">
 			<div className="grid grid-cols-2 gap-8 pt-6 border-t-2 border-editorial-ink">
@@ -37,13 +70,13 @@ export function InteractionMatrix({
 						<ReactionButton
 							icon={<Heart size={18} />}
 							label="Cheer"
-							onClick={onCheerLeft}
+							onClick={handleCheerLeft}
 							disabled={false}
 						/>
 						<ReactionButton
 							icon={<ThumbsDown size={18} />}
 							label="Boo"
-							onClick={onBooLeft}
+							onClick={handleBooLeft}
 							disabled={false}
 						/>
 					</div>
@@ -62,13 +95,13 @@ export function InteractionMatrix({
 						<ReactionButton
 							icon={<Heart size={18} />}
 							label="Cheer"
-							onClick={onCheerRight}
+							onClick={handleCheerRight}
 							disabled={false}
 						/>
 						<ReactionButton
 							icon={<ThumbsDown size={18} />}
 							label="Boo"
-							onClick={onBooRight}
+							onClick={handleBooRight}
 							disabled={false}
 						/>
 					</div>

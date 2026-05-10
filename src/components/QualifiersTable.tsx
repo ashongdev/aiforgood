@@ -1,5 +1,6 @@
 import { ChevronLeft, ChevronRight } from "lucide-react";
 import { useEffect, useRef, useState } from "react";
+import ReactGA from "react-ga4";
 import { AnimatedScore } from "./AnimatedScore";
 
 function AnimatedPanel({
@@ -139,11 +140,15 @@ export function QualifiersTable({ data }: QualifiersTableProps) {
 						<div key={actualIndex}>
 							{/* Row */}
 							<button
-								onClick={() =>
+								onClick={() => {
+									ReactGA.event({
+										category: "User",
+										action: `Team Clicked:${qualifier.team}`,
+									});
 									setSelectedTeam(
 										isExpanded ? null : qualifier,
-									)
-								}
+									);
+								}}
 								className={`w-full text-left flex items-center gap-3 px-3 py-3 border-t border-b-0 border-r-0 border-editorial-ink/20 border-l-4 transition-colors ${
 									progresses
 										? "border-l-editorial-gold"

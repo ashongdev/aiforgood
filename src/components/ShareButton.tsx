@@ -1,4 +1,5 @@
 import { Check, Share2 } from "lucide-react";
+import ReactGA from "react-ga4";
 
 interface ShareButtonProps {
 	match: {
@@ -19,9 +20,17 @@ export function ShareButton({
 	shared,
 	onShare,
 }: ShareButtonProps) {
+	const handleShare = () => {
+		ReactGA.event({
+			category: "User",
+			action: "Share Field Report Clicked",
+		});
+		onShare();
+	};
+
 	return (
 		<button
-			onClick={onShare}
+			onClick={handleShare}
 			className="w-full mb-12 py-3 border-2 border-editorial-ink font-black text-[10px] uppercase tracking-[0.4em] flex items-center justify-center gap-3 bg-white hover:bg-editorial-gold transition-colors shadow-[4px_4px_0px_0px_rgba(26,26,26,1)] active:translate-y-1 active:shadow-none"
 		>
 			{shared ? (
