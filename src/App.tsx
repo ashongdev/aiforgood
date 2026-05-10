@@ -1,5 +1,5 @@
 import { useQuery } from "@tanstack/react-query";
-import { BookOpen, Info } from "lucide-react";
+import { BookOpen, Info, RotateCcw } from "lucide-react";
 import { AnimatePresence } from "motion/react";
 import { useEffect, useMemo, useState } from "react";
 import { BracketList } from "./components/BracketList";
@@ -22,14 +22,30 @@ interface BracketPhase {
 
 export default function App() {
 	const [currentPhase, setCurrentPhase] = useState(0);
-	const [category, setCategory] = useState<"junior" | "senior">("junior");
+	const [category, setCategory] = useState<"junior" | "senior">(() => {
+		const saved = localStorage.getItem("selectedCategory");
+		return (saved as "junior" | "senior") || "junior";
+	});
 	const [selectedMatch, setSelectedMatch] = useState<any>(null);
 	const [shared, setShared] = useState(false);
 	const [isInfoOpen, setIsInfoOpen] = useState(false);
 	const [currentPage, setCurrentPage] = useState<"bracket" | "rules">(
 		"bracket",
 	);
+	const [refreshCount, setRefreshCount] = useState(0);
+	const [lastRefreshTime, setLastRefreshTime] = useState<number>(0);
 	const { effects, triggerEffect } = useEffects();
+
+	// Persist category to localStorage
+	useEffect(() => {
+		localStorage.setItem("selectedCategory", category);
+	}, [category]);
+
+	// Reset refresh count when phase or category changes
+	useEffect(() => {
+		setRefreshCount(0);
+		setLastRefreshTime(0);
+	}, [currentPhase, category]);
 
 	const PHASES = [
 		{ phase: 0, sheetName: "QUALIFIERS", phaseName: "QUALIFIERS" },
@@ -183,10 +199,52 @@ export default function App() {
 	const prevPhase = () =>
 		setCurrentPhase((p) => (p - 1 + PHASES.length) % PHASES.length);
 
+	const handleManualRefresh = () => {
+		const now = Date.now();
+		const timeSinceLastRefresh = now - lastRefreshTime;
+
+		// Allow max 3 refreshes via button
+		if (refreshCount >= 3) {
+			alert(
+				"Maximum refreshes reached. Data will auto-refresh every 60 seconds.",
+			);
+			return;
+		}
+
+		// Small cooldown between clicks (1 second)
+		if (timeSinceLastRefresh < 1000) {
+			return;
+		}
+
+		setRefreshCount((count) => count + 1);
+		setLastRefreshTime(now);
+		query.refetch();
+	};
+
 	return (
 		<div className="min-h-screen bg-editorial-bg text-editorial-ink font-sans selection:bg-editorial-gold selection:text-white border-[12px] md:border-[24px] border-editorial-ink flex flex-col items-center bg-[url('https://www.transparenttextures.com/patterns/pinstriped-suit.png')] p-6 overflow-x-hidden relative">
 			{/* Navigation Buttons */}
 			<div className="fixed bottom-6 right-6 z-30 flex gap-3">
+				<div className="flex flex-col items-center gap-1">
+					<button
+						onClick={handleManualRefresh}
+						disabled={refreshCount >= 3 || query.isFetching}
+						title={`Refresh scores (${refreshCount}/3 used)`}
+						className={`border-2 border-editorial-ink p-3 transition-all shadow-[4px_4px_0px_0px_rgba(26,26,26,1)] ${
+							refreshCount >= 3
+								? "bg-gray-200 text-gray-600 cursor-not-allowed"
+								: query.isFetching
+									? "bg-editorial-green text-white"
+									: "bg-editorial-gold text-editorial-ink hover:bg-editorial-ink hover:text-editorial-gold"
+						}`}
+						aria-label="Refresh scores"
+					>
+						<RotateCcw
+							size={24}
+							className={`font-bold ${query.isFetching ? "animate-spin" : ""}`}
+						/>
+					</button>
+				</div>
 				<button
 					onClick={() =>
 						setCurrentPage(
