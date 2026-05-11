@@ -37,11 +37,11 @@ export function ByeCard({ team, station, onClick }: ByeCardProps) {
 						{team}
 					</span>
 					<div className="flex items-center gap-3 justify-center py-2">
-						<div className="h-[2px] flex-1 bg-editorial-ink" />
+						<div className="h-0.5 flex-1 bg-editorial-ink" />
 						<span className="text-[11px] font-black italic text-editorial-ink whitespace-nowrap">
 							BYE
 						</span>
-						<div className="h-[2px] flex-1 bg-editorial-ink" />
+						<div className="h-0.5 flex-1 bg-editorial-ink" />
 					</div>
 					<span className="text-[10px] font-black uppercase tracking-[0.2em] text-editorial-ink block">
 						Advances to Next Round

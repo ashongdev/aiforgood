@@ -46,6 +46,38 @@ interface QualifiersTableProps {
 	data: string[][];
 }
 
+const teamLogos: Record<string, string> = {
+	//Senior Team Logos
+	"Nanovolts": "/logos/Senior/Nanovolts.svg",
+	"Ai Squad": "/logos/Senior/Ai Squad.svg",
+	"Masterminds": "/logos/Senior/Masterminds.svg",
+	"Aris Eagles Senior": "/logos/Senior/Aris Eagles Senior.svg",
+	"Redeemer Tech": "/logos/Senior/Redeemer Tech.svg",
+	"Stemr Seniors": "/logos/Senior/Stemr Seniors.svg",
+	"Rookies": "/logos/Senior/Rookies.svg",
+	"Createch": "/logos/Senior/Create T.svg",
+	"Team Applied": "/logos/Senior/Team Applied.svg",
+	"Fusion Innovators": "/logos/Senior/Fusion Innovators.svg",
+	"Beta Gold-St": "/logos/Senior/Beta Gold-St.svg",
+	"Klone": "/logos/Senior/Klone.svg",
+	"Kepler-Robot": "/logos/Senior/Kepler-Robot.svg",
+	"Ycem": "/logos/Senior/Ycem.svg",
+	"Ahtoo Alpha Gold St": "/logos/Senior/Ahtoo Alpha Gold St.svg",
+	"Novex": "/logos/Senior/Novex.svg",
+
+	//Junior Team Logos
+	"Aris Eagles Junior": "/logos/Junior/Aris Eagles Junior.svg",
+	"Beta Gold-Jr": "/logos/Junior/Beta Gold-Jr.svg",
+
+
+
+
+	
+	// "Createch": "/logos/Createch.svg",
+	// "Redeemer Tech": "/logos/Redeemer-Tech.svg",
+	// "Stemr Seniors": "/logos/Stemr-Seniors.svg",
+};
+
 export function QualifiersTable({ data }: QualifiersTableProps) {
 	const [selectedTeam, setSelectedTeam] = useState<QualifierTeam | null>(
 		null,
@@ -108,13 +140,13 @@ export function QualifiersTable({ data }: QualifiersTableProps) {
 
 			{/* ── Column header ── */}
 			<div className="flex items-center gap-3 px-3 py-2 bg-editorial-ink border-2 border-editorial-ink border-l-4 border-l-editorial-ink">
-				<span className="w-8 flex-shrink-0 text-[10px] font-black uppercase tracking-widest text-white/60">
+				<span className="w-8 shrink-0 text-[10px] font-black uppercase tracking-widest text-white/60">
 					#
 				</span>
 				<span className="flex-1 min-w-0 text-[10px] font-black uppercase tracking-widest text-white/60">
 					Team
 				</span>
-				<span className="hidden sm:flex items-center gap-1 flex-shrink-0">
+				<span className="hidden sm:flex items-center gap-1 shrink-0">
 					{["R1", "R2", "R3", "R4"].map((r) => (
 						<span
 							key={r}
@@ -124,7 +156,7 @@ export function QualifiersTable({ data }: QualifiersTableProps) {
 						</span>
 					))}
 				</span>
-				<span className="flex-shrink-0 w-12 text-right text-[10px] font-black uppercase tracking-widest text-white/60">
+				<span className="shrink-0 w-12 text-right text-[10px] font-black uppercase tracking-widest text-white/60">
 					Total
 				</span>
 			</div>
@@ -161,7 +193,7 @@ export function QualifiersTable({ data }: QualifiersTableProps) {
 							>
 								{/* Rank badge */}
 								<span
-									className={`w-8 h-8 flex-shrink-0 flex items-center justify-center border-2 font-black text-sm ${
+									className={`w-8 h-8 shrink-0 flex items-center justify-center border-2 font-black text-sm ${
 										isExpanded
 											? "border-white text-white"
 											: "border-editorial-ink text-editorial-ink"
@@ -170,19 +202,30 @@ export function QualifiersTable({ data }: QualifiersTableProps) {
 									{actualIndex + 1}
 								</span>
 
-								{/* Team name */}
-								<span
-									className={`flex-1 min-w-0 text-sm font-semibold truncate ${
-										isExpanded
-											? "text-white"
-											: "text-editorial-ink"
-									}`}
-								>
-									{qualifier.team}
+								{/* Logo + Team name */}
+								<span className="flex-1 min-w-0 flex items-center gap-2">
+									{teamLogos[qualifier.team] ? (
+										<img
+											src={teamLogos[qualifier.team]}
+											alt={qualifier.team}
+											className="w-6 h-6 object-contain shrink-0"
+										/>
+									) : (
+										<span className="w-6 h-6 shrink-0" />
+									)}
+									<span
+										className={`text-sm font-semibold truncate ${
+											isExpanded
+												? "text-white"
+												: "text-editorial-ink"
+										}`}
+									>
+										{qualifier.team}
+									</span>
 								</span>
 
 								{/* Round pills — hidden on very small screens */}
-								<span className="hidden sm:flex items-center gap-1 flex-shrink-0">
+								<span className="hidden sm:flex items-center gap-1 shrink-0">
 									{[
 										qualifier.r1,
 										qualifier.r2,
@@ -204,7 +247,7 @@ export function QualifiersTable({ data }: QualifiersTableProps) {
 
 								{/* Total */}
 								<span
-									className={`flex-shrink-0 w-12 text-right text-sm font-black ${
+									className={`shrink-0 w-12 text-right text-sm font-black ${
 										isExpanded
 											? "text-editorial-gold"
 											: parseInt(qualifier.total) > 0
