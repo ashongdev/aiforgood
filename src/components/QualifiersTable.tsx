@@ -67,7 +67,30 @@ const teamLogos: Record<string, string> = {
 
 	//Junior Team Logos
 	"Aris Eagles Junior": "/logos/Junior/Aris Eagles Junior.svg",
-	"Beta Gold-Jr": "/logos/Junior/Beta Gold-Jr.svg",
+	"Beta Gold-Jr": "/logos/Junior/BetavGold.svg",
+	"Bytebots": "/logos/Junior/Byetbots.svg",
+	"Mechminds": "/logos/Junior/Mechminds.svg",
+	"Varified": "/logos/Junior/Varified'.svg",
+	"Redeemer Builders": "/logos/Junior/Redeemer.svg",
+	"Redeemer Innovators": "/logos/Junior/Redeemer Innovatios.svg",
+	"Grace Worriors": "/logos/Junior/GraceWarriors.svg",
+	"Nexgen": "/logos/Junior/NEXGEn.svg",
+	"Bweh Trailblazers": "/logos/Junior/Bweh!.svg",
+	"Tech-Titans": "/logos/Junior/Tech Titans.svg",
+	"Legacy AI": "/logos/Junior/Legacy.svg",
+	"Glocity": "/logos/Junior/Glocity.svg",
+	"Kinderkids Dream Builders": "/logos/Junior/Dreambuiold.svg",
+	"Stemr Juniors": "/logos/Junior/Stemr Seniors.svg",
+	"J2W Robotics Team": "/logos/Junior/J2.svg",
+	"Kinderkids Robostars": "/logos/Junior/Kinderkids.svg",
+	"Ahtoo Alpha Gold JT": "/logos/Junior/Ahtoo.svg",
+	"Beta Gold-JT": "/logos/Junior/BetavGold.svg",
+	"Wioso Intellectuals": "/logos/Junior/WIOSS.svg",
+	"Global Eagles": "/logos/Junior/Eagles.svg",
+	"Guardian Lions": "/logos/Junior/Lions.svg",
+	"Pro-Lego Codex": "/logos/Junior/Pro Lego.svg",
+	"The Queens": "/logos/Junior/Queens.svg",
+
 
 
 
