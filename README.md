@@ -15,7 +15,7 @@
 
 ## About
 
-This platform powers the live scoring and match brackets for the **Robotics for Good Youth Challenge Ghana 2026** — the national qualifying tournament held on **16 May 2026** in Accra, Ghana. Student teams aged 10–18 compete with robots built to tackle this year's theme: **Disaster Response**.
+This platform powers the live scoring and match brackets for the **Robotics for Good Youth Challenge Ghana 2026** — the national qualifying tournament held on **16 May 2026** in Accra, Ghana. Student teams aged 10–18 compete with robots built to tackle this year's theme: **Food Security**.
 
 Top winners advance to the **Grand Finale at the AI for Good Global Summit 2026** in Geneva, Switzerland, organised by the International Telecommunication Union (ITU).
 
