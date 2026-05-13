@@ -92,7 +92,7 @@ const teamLogos: Record<string, string> = {
 	"Guardian Lions": "/logos/Junior/Lions.svg",
 	"Pro-Lego-Codex": "/logos/Junior/Pro Lego.svg",
 	"The Queens": "/logos/Junior/Queens.svg",
-	"Fearsom Dragons": "/logos/Junior/Fearsome Dragons.svg",
+	"Fearsom_Dragons": "/logos/Junior/Fearsome Dragons.svg",
 	"Nexus Communicators": "/logos/Junior/Nexus Communicators.svg",
 	"Quantum Minds": "/logos/Junior/Quantum Minds.svg",
 	"ACS Tech-Rangers": "/logos/Junior/ACS Tech-Rangers.svg",
