@@ -19,22 +19,21 @@ interface MatchNodeProps {
 const teamLogos: Record<string, string> = {
 	//Senior Team Logos
 	"Nanovolts": "/logos/Senior/Nanovolts.svg",
-	"Ai Squad": "/logos/Senior/Ai Squad.svg",
+	"AI Squad": "/logos/Senior/Ai Squad.svg",
 	"Masterminds": "/logos/Senior/Masterminds.svg",
-	"Aris Eagles Senior": "/logos/Senior/Aris Eagles Senior.svg",
+	"ARIS Eagles Senior": "/logos/Senior/Aris Eagles Senior.svg",
 	"Redeemer Tech": "/logos/Senior/Redeemer Tech.svg",
-	"Stemr Seniors": "/logos/Senior/Stemr Seniors.svg",
+	"STEMR Seniors": "/logos/Senior/Stemr Seniors.svg",
 	"Rookies": "/logos/Senior/Rookies.svg",
 	"Createch": "/logos/Senior/Create T.svg",
 	"Team Applied": "/logos/Senior/Team Applied.svg",
 	"Fusion Innovators": "/logos/Senior/Fusion Innovators.svg",
-	"Beta Gold-St": "/logos/Senior/Beta Gold-St.svg",
+	"Beta Gold-ST": "/logos/Senior/Beta Gold-St.svg",
 	"Klone": "/logos/Senior/Klone.svg",
 	"Kepler-Robot": "/logos/Senior/Kepler-Robot.svg",
-	"Ycem": "/logos/Senior/Ycem.svg",
-	"Ahtoo Alpha Gold St": "/logos/Senior/Ahtoo Alpha Gold St.svg",
+	"YCEM": "/logos/Senior/Ycem.svg",
+	"Ahtoo Alpha Gold ST": "/logos/Senior/Ahtoo Alpha Gold St.svg",
 	"Novex": "/logos/Senior/Novex.svg",
-
 	//Junior Team Logos
 	"Aris Eagles Junior": "/logos/Junior/Aris Eagles Junior.svg",
 	"Beta Gold-Jr": "/logos/Junior/BetavGold.svg",
