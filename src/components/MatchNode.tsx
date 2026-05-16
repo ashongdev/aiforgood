@@ -35,6 +35,7 @@ const teamLogos: Record<string, string> = {
 	"Ahtoo Alpha Gold ST": "/logos/Senior/Ahtoo Alpha Gold St.svg",
 	"Novex": "/logos/Senior/Novex.svg",
 	"The Problem Solvers": "/logos/Senior/The Problem Solvers.svg",
+	"Mechatronics": "/logos/Senior/Mechatronics.svg",
 
 	//Junior Team Logos
 	"ARIS Eagles Junior": "/logos/Junior/Aris Eagles Junior.svg",
