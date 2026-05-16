@@ -48,39 +48,37 @@ interface QualifiersTableProps {
 
 const teamLogos: Record<string, string> = {
 	//Senior Team Logos
-	"Nanovolts": "/logos/Senior/Nanovolts.svg",
-	"AI Squad": "/logos/Senior/Ai Squad.svg",
-	"Masterminds": "/logos/Senior/Masterminds.svg",
-	"ARIS Eagles Senior": "/logos/Senior/Aris Eagles Senior.svg",
+	Nanovolts: "/logos/Senior/Nanovolts.svg",
+	"Ai Squad": "/logos/Senior/Ai Squad.svg",
+	Masterminds: "/logos/Senior/Masterminds.svg",
+	"Aris Eagles Senior": "/logos/Senior/Aris Eagles Senior.svg",
 	"Redeemer Tech": "/logos/Senior/Redeemer Tech.svg",
-	"STEMR Seniors": "/logos/Senior/Stemr Seniors.svg",
-	"Rookies": "/logos/Senior/Rookies.svg",
-	"Createch": "/logos/Senior/Create T.svg",
+	"Stemr Seniors": "/logos/Senior/Stemr Seniors.svg",
+	Rookies: "/logos/Senior/Rookies.svg",
+	Createch: "/logos/Senior/Create T.svg",
 	"Team Applied": "/logos/Senior/Team Applied.svg",
 	"Fusion Innovators": "/logos/Senior/Fusion Innovators.svg",
-	"Beta Gold-ST": "/logos/Senior/Beta Gold-St.svg",
-	"Klone": "/logos/Senior/Klone.svg",
+	"Beta Gold-St": "/logos/Senior/Beta Gold-St.svg",
+	Klone: "/logos/Senior/Klone.svg",
 	"Kepler-Robot": "/logos/Senior/Kepler-Robot.svg",
-	"YCEM": "/logos/Senior/Ycem.svg",
-	"Ahtoo Alpha Gold ST": "/logos/Senior/Ahtoo Alpha Gold St.svg",
-	"Novex": "/logos/Senior/Novex.svg",
-	"The Problem Solvers": "/logos/Senior/The Problem Solvers.svg",
-    "Mechatronics": "/logos/Senior/Mechatronics.svg",
+	Ycem: "/logos/Senior/Ycem.svg",
+	"Ahtoo Alpha Gold St": "/logos/Senior/Ahtoo Alpha Gold St.svg",
+	Novex: "/logos/Senior/Novex.svg",
 
 	//Junior Team Logos
 	"ARIS Eagles Junior": "/logos/Junior/Aris Eagles Junior.svg",
 	"Beta Gold-Jr": "/logos/Junior/BetavGold.svg",
-	"Bytebots": "/logos/Junior/Byetbots.svg",
-	"Mechminds": "/logos/Junior/Mechminds.svg",
-	"Varified": "/logos/Junior/Varified'.svg",
+	Bytebots: "/logos/Junior/Byetbots.svg",
+	Mechminds: "/logos/Junior/Mechminds.svg",
+	Varified: "/logos/Junior/Varified'.svg",
 	"Redeemer Builders": "/logos/Junior/Redeemer.svg",
 	"Redeemer Innovators": "/logos/Junior/Redeemer Innovatios.svg",
 	"Grace Worriors": "/logos/Junior/GraceWarriors.svg",
-	"Nexgen": "/logos/Junior/NEXGEn.svg",
+	Nexgen: "/logos/Junior/NEXGEn.svg",
 	"Bweh Trailblazers": "/logos/Junior/Bweh!.svg",
 	"Tech-Titans": "/logos/Junior/Tech Titans.svg",
 	"Legacy AI": "/logos/Junior/Legacy.svg",
-	"Glocity": "/logos/Junior/Glocity.svg",
+	Glocity: "/logos/Junior/Glocity.svg",
 	"Kinderkids Dream Builders": "/logos/Junior/Dreambuiold.svg",
 	"STEMT Juniors": "/logos/Junior/Stemr Seniors.svg",
 	"J2W Robotics Team": "/logos/Junior/J2.svg",
@@ -92,11 +90,10 @@ const teamLogos: Record<string, string> = {
 	"Guardian Lions": "/logos/Junior/Lions.svg",
 	"Pro-Lego-Codex": "/logos/Junior/Pro Lego.svg",
 	"The Queens": "/logos/Junior/Queens.svg",
-	"Fearsom_Dragons": "/logos/Junior/Fearsome Dragons.svg",
-	"Nexus Communicators": "/logos/Junior/Nexus Communicators.svg",
-	"Quantum Minds": "/logos/Junior/Quantum Minds.svg",
-	"ACS Tech-Rangers": "/logos/Junior/ACS Tech-Rangers.svg",
-	"ACS Tech-Titans": "/logos/Junior/Tech Titans.svg",
+
+	// "Createch": "/logos/Createch.svg",
+	// "Redeemer Tech": "/logos/Redeemer-Tech.svg",
+	// "Stemr Seniors": "/logos/Stemr-Seniors.svg",
 };
 
 export function QualifiersTable({ data }: QualifiersTableProps) {
@@ -177,9 +174,9 @@ export function QualifiersTable({ data }: QualifiersTableProps) {
 						</span>
 					))}
 				</span>
-				<span className="shrink-0 w-12 text-right text-[10px] font-black uppercase tracking-widest text-white/60">
+				{/* <span className="shrink-0 w-12 text-right text-[10px] font-black uppercase tracking-widest text-white/60">
 					Total
-				</span>
+				</span> */}
 			</div>
 
 			{/* ── Ranked list ── */}
@@ -267,7 +264,7 @@ export function QualifiersTable({ data }: QualifiersTableProps) {
 								</span>
 
 								{/* Total */}
-								<span
+								{/* <span
 									className={`shrink-0 w-12 text-right text-sm font-black ${
 										isExpanded
 											? "text-editorial-gold"
@@ -277,7 +274,7 @@ export function QualifiersTable({ data }: QualifiersTableProps) {
 									}`}
 								>
 									<AnimatedScore value={qualifier.total} />
-								</span>
+								</span> */}
 							</button>
 
 							{/* Inline expanded detail — animated */}
